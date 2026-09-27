@@ -81,3 +81,9 @@ footer a{color:var(--sub);margin-right:12px}
 .die{width:76px;height:76px;border-radius:14px;background:#fff;border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
 .crumb{font-size:13px;color:var(--sub);margin:0 0 6px}
 .crumb a{color:var(--sub)}
+[hidden]{display:none!important}
+.adv{margin-top:12px;padding:10px 12px}
+.adv summary{font-size:14px;color:var(--sub)}
+.adv[open] summary{margin-bottom:6px}
+.after{justify-content:center}
+.quick{margin:0 0 6px}

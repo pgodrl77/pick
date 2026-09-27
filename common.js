@@ -21,6 +21,11 @@ var P = (function () {
     function fallback() { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); ok(); } catch (e) { prompt('아래 내용을 복사하세요', text); } ta.remove(); }
   }
   function share(state, msg) { var url = location.origin + location.pathname + '#s=' + enc(state); copy(url, msg || '공유 링크를 복사했습니다'); return url; }
+  function shareResult(text) { // 결과 한 줄 + 도구 주소 → 모바일은 공유 시트, PC는 복사
+    var url = location.origin + location.pathname;
+    if (navigator.share) { navigator.share({ title: document.title, text: text, url: url }).catch(function () {}); return; }
+    copy(text + '\n' + url, '결과를 복사했습니다 — 단체방에 붙여넣으세요');
+  }
   function fullscreen(el) { if (document.fullscreenElement) document.exitFullscreen(); else if (el.requestFullscreen) el.requestFullscreen(); }
   var ac = null;
   function tick(freq, dur) { try { ac = ac || new (window.AudioContext || window.webkitAudioContext)(); var o = ac.createOscillator(), g = ac.createGain(); o.frequency.value = freq || 880; g.gain.value = 0.06; o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime + (dur || 0.03)); } catch (e) {} }
@@ -28,5 +33,5 @@ var P = (function () {
   function $(s) { return document.querySelector(s); }
   function now() { var d = new Date(); return ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2) + ':' + ('0' + d.getSeconds()).slice(-2); }
   function presets(box, list, onPick) { if (!box) return; list.forEach(function (p) { var b = document.createElement('button'); b.type = 'button'; b.textContent = p[0]; b.onclick = function () { onPick(p[1]); }; box.appendChild(b); }); }
-  return { rand: rand, randFloat: randFloat, shuffle: shuffle, lines: lines, load: load, save: save, enc: enc, dec: dec, fromHash: fromHash, toast: toast, copy: copy, share: share, fullscreen: fullscreen, tick: tick, esc: esc, $: $, now: now, presets: presets };
+  return { rand: rand, randFloat: randFloat, shuffle: shuffle, lines: lines, load: load, save: save, enc: enc, dec: dec, fromHash: fromHash, toast: toast, copy: copy, share: share, shareResult: shareResult, fullscreen: fullscreen, tick: tick, esc: esc, $: $, now: now, presets: presets };
 })();

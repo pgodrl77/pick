@@ -63,6 +63,7 @@
   P.$('#win').addEventListener('change', function () { build('win'); });
   P.$('#new').onclick = newLadder;
   P.$('#all').onclick = runAll;
+  P.$('#shareres').onclick = function () { var t = summary.innerText.trim(); if (!t) { P.toast('먼저 사다리를 타 주세요'); return; } P.shareResult('🪜 사다리 결과\n' + t); };
   P.$('#pickone').onclick = function () { var n = namesBox.children.length, left = []; for (var i = 0; i < n; i++) if (!revealed[i]) left.push(i); if (!left.length) { P.toast('모두 확인했습니다. 새 사다리를 만들어 보세요'); return; } run(left[0]); };
   P.$('#toggle').onclick = function () { hideResults(resBox.children[0].type === 'text'); };
   P.$('#share').onclick = function () { save(); P.share(st); };

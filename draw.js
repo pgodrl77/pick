@@ -2,7 +2,7 @@
   var KEY = 'draw:' + location.pathname, ta = P.$('#items'), out = P.$('#out'), hist = P.$('#hist'), btn = P.$('#go');
   var st = P.fromHash() || P.load(KEY, null) || { items: (window.PRESET || '김민준\n이서연\n박도윤\n최지우\n정하준\n강서윤\n조시우\n윤하은').split('\n'), k: 1, exclude: true };
   ta.value = (st.items || []).join('\n'); P.$('#k').value = st.k || 1; P.$('#exclude').checked = st.exclude !== false;
-  var picked = [];
+  var picked = [], last = [];
   function persist() { st = { items: ta.value.split('\n').filter(function (s) { return s.trim(); }), k: +P.$('#k').value || 1, exclude: P.$('#exclude').checked }; P.save(KEY, st); }
   function pool() { var all = P.lines(ta.value.replace(/,/g, '\n')); return P.$('#exclude').checked ? all.filter(function (s) { return picked.indexOf(s) < 0; }) : all; }
   function count() { P.$('#count').textContent = P.lines(ta.value.replace(/,/g, '\n')).length + '명(개) · 남은 후보 ' + pool().length; }
@@ -16,10 +16,11 @@
       var win = P.shuffle(p).slice(0, k); picked = picked.concat(win);
       out.innerHTML = '<div><div style="font-size:14px;color:#5b6475;font-weight:600">당첨 ' + win.length + '명</div><div class="chips">' + win.map(function (w) { return '<span class="chip">' + P.esc(w) + '</span>'; }).join('') + '</div></div>';
       var li = document.createElement('li'); li.textContent = P.now() + '  ' + win.join(', '); hist.insertBefore(li, hist.firstChild);
-      btn.disabled = false; count(); P.tick(1175, 0.15);
+      btn.disabled = false; count(); P.tick(1175, 0.15); P.$('#after').hidden = false; last = win;
     })(t0);
   }
-  btn.onclick = go;
+  btn.onclick = go; P.$('#again').onclick = go;
+  P.$('#shareres').onclick = function () { if (last.length) P.shareResult('🎟️ 추첨 결과: ' + last.join(', ')); };
   ta.addEventListener('input', function () { persist(); count(); });
   ['#k', '#exclude'].forEach(function (s) { P.$(s).addEventListener('change', function () { persist(); count(); }); });
   P.$('#reset').onclick = function () { picked = []; hist.innerHTML = ''; out.className = 'result empty'; out.textContent = '버튼을 누르면 뽑습니다'; count(); };

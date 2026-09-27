@@ -10,7 +10,7 @@
 <div><label for="win">당첨 수 (자동으로 '당첨'/'꽝' 채움)</label><input type="number" id="win" min="0" max="30" value="1"></div></div>
 <p class="hint">이름과 결과 칸은 직접 고칠 수 있습니다. 이름 칸에서 Enter, 또는 사다리 세로줄을 누르면 그 사람의 사다리를 탑니다.</p>
 <div class="ladder-wrap" style="margin-top:12px"><div style="display:inline-block"><div class="ladder-names" id="names"></div><canvas id="lad" height="360"></canvas><div class="ladder-results" id="results"></div></div></div>
-<div class="btns"><button class="btn" id="pickone">▶ 한 명씩 타기</button><button class="btn" id="all">전체 결과 보기</button><button class="btn ghost" id="new">🔄 새 사다리</button><button class="btn ghost" id="toggle">결과 가리기/보기</button><button class="btn ghost" id="full">⛶ 전체화면</button><button class="btn ghost" id="share">🔗 공유 링크</button></div>
+<div class="btns"><button class="btn" id="pickone">▶ 한 명씩 타기</button><button class="btn" id="all">전체 결과 보기</button><button class="btn ghost" id="new">🔄 새 사다리</button><button class="btn ghost" id="toggle">결과 가리기/보기</button><button class="btn ghost" id="full">⛶ 전체화면</button><button class="btn ghost" id="share">🔗 공유 링크</button><button class="btn ghost" id="shareres">📤 결과 공유</button></div>
 <p class="hint">현재 상태: <span id="hideState"></span></p><div id="summary" style="margin-top:10px;line-height:2"></div></div><div class="prose"><h2>사다리타기 사용법</h2><ol><li>참가자 수와 당첨 수를 정하면 이름 칸과 결과 칸('당첨'/'꽝')이 자동으로 채워집니다.</li><li>이름과 결과는 눌러서 직접 고칠 수 있습니다. 예: 결과를 '커피 사기', '청소', '통과'로 바꾸기.</li>
 <li><b>한 명씩 타기</b>를 누르면 왼쪽 사람부터 차례로 선이 그려지고, 도착한 결과만 공개됩니다. <b>전체 결과 보기</b>는 모두를 순서대로 보여 줍니다.</li><li>마음에 들지 않으면 <b>새 사다리</b>로 가로줄을 다시 무작위로 그립니다.</li></ol>
 <h2>공정한가요?</h2><p>가로줄의 위치는 암호학적 난수로 정해지고, 어느 두 가로줄도 같은 높이에서 이어지지 않게 그려서 한 사람당 도착점이 정확히 하나씩 대응됩니다. 결과 칸은 기본으로 가려져 있어 미리 볼 수 없습니다.</p></div>

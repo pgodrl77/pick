@@ -2,7 +2,7 @@
   var cv = P.$('#wheel'), ctx = cv.getContext('2d'), ta = P.$('#items'), out = P.$('#out'), hist = P.$('#hist'), btn = P.$('#spin');
   var KEY = 'roulette:' + location.pathname;
   var COLORS = ['#6366f1', '#f59e0b', '#10b981', '#ef4444', '#3b82f6', '#ec4899', '#14b8a6', '#f97316', '#8b5cf6', '#84cc16', '#06b6d4', '#e11d48'];
-  var rot = 0, spinning = false, items = [];
+  var rot = 0, spinning = false, items = [], last = '';
   var st = P.fromHash() || P.load(KEY, null) || { items: (window.PRESET || '짜장면\n짬뽕\n김치찌개\n돈가스\n초밥\n햄버거').split('\n'), remove: false, sound: true, dur: 5 };
   ta.value = (st.items || []).join('\n');
   P.$('#remove').checked = !!st.remove; P.$('#sound').checked = st.sound !== false; P.$('#dur').value = st.dur || 5;
@@ -50,10 +50,12 @@
   }
   function done(w) {
     var name = items[w].t; spinning = false; btn.disabled = false;
-    out.className = 'result'; out.textContent = '🎉 ' + name; if (P.$('#sound').checked) { P.tick(988, 0.12); setTimeout(function () { P.tick(1319, 0.2); }, 130); }
+    out.className = 'result'; out.textContent = '🎉 ' + name; P.$('#after').hidden = false; last = name; if (P.$('#sound').checked) { P.tick(988, 0.12); setTimeout(function () { P.tick(1319, 0.2); }, 130); }
     var li = document.createElement('li'); li.textContent = P.now() + '  ' + name; hist.insertBefore(li, hist.firstChild);
     if (P.$('#remove').checked) { var lines = ta.value.split('\n'), idx = -1, n = 0; for (var i = 0; i < lines.length; i++) { if (!lines[i].trim()) continue; if (n === w) { idx = i; break; } n++; } if (idx >= 0) { lines.splice(idx, 1); ta.value = lines.join('\n'); } refresh(); persist(); }
   }
+  P.$('#again').onclick = spin;
+  P.$('#shareres').onclick = function () { if (last) P.shareResult('🎡 돌림판 결과: ' + last); };
   cv.addEventListener('click', spin); btn.addEventListener('click', spin);
   ta.addEventListener('input', function () { refresh(); persist(); });
   ['#remove', '#sound', '#dur'].forEach(function (s) { P.$(s).addEventListener('change', persist); });
