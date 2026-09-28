@@ -1,3 +1,4 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 :root{--bg:#f7f8fb;--card:#fff;--ink:#1d2330;--sub:#5b6475;--line:#e3e7ef;--pri:#4f46e5;--pri2:#eef0ff;--ok:#0e9f6e;--warn:#e11d48;--r:14px}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
@@ -87,3 +88,30 @@ footer a{color:var(--sub);margin-right:12px}
 .adv[open] summary{margin-bottom:6px}
 .after{justify-content:center}
 .quick{margin:0 0 6px}
+/* ── 2026-09-28 디자인 다듬기: 글꼴·움직임·모바일 ── */
+body{font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;letter-spacing:-.01em;-webkit-font-smoothing:antialiased}
+h1{font-weight:800;letter-spacing:-.03em}
+h2{letter-spacing:-.02em}
+header.top{background:rgba(255,255,255,.88);backdrop-filter:saturate(1.4) blur(8px);-webkit-backdrop-filter:saturate(1.4) blur(8px)}
+.card{box-shadow:0 1px 2px rgba(16,24,40,.04),0 8px 24px -12px rgba(16,24,40,.10)}
+.btn{transition:transform .08s,filter .15s}
+.btn:hover:not(:disabled){filter:brightness(1.08)}
+.btn:active:not(:disabled){transform:scale(.97)}
+.btn.big{box-shadow:0 8px 20px -10px rgba(79,70,229,.7)}
+.tile{transition:border-color .15s,transform .15s,box-shadow .15s}
+.tile:hover{transform:translateY(-2px);box-shadow:0 10px 24px -14px rgba(79,70,229,.5)}
+.tile .ic{transition:transform .2s}
+.tile:hover .ic{transform:scale(1.12) rotate(-6deg)}
+.result.pop{animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+@keyframes pop{0%{transform:scale(.92);opacity:.4}100%{transform:none;opacity:1}}
+details[open]{border-color:var(--pri)}
+@media(max-width:820px){
+  nav.tools{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:18px}
+  h1{font-size:23px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .tile{padding:12px}
+  .tile b{font-size:15px}
+  .tile span{font-size:13px}
+  .btns .btn.ghost{flex:1 1 auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

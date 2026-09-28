@@ -35,3 +35,16 @@ var P = (function () {
   function presets(box, list, onPick) { if (!box) return; list.forEach(function (p) { var b = document.createElement('button'); b.type = 'button'; b.textContent = p[0]; b.onclick = function () { onPick(p[1]); }; box.appendChild(b); }); }
   return { rand: rand, randFloat: randFloat, shuffle: shuffle, lines: lines, load: load, save: save, enc: enc, dec: dec, fromHash: fromHash, toast: toast, copy: copy, share: share, shareResult: shareResult, fullscreen: fullscreen, tick: tick, esc: esc, $: $, now: now, presets: presets };
 })();
+/* 결과가 바뀔 때 살짝 튀어나오는 효과 (2026-09-28) */
+(function () {
+  function watch() {
+    if (!window.MutationObserver) return;
+    document.querySelectorAll('.result').forEach(function (el) {
+      new MutationObserver(function () {
+        if (el.classList.contains('empty')) return;
+        el.classList.remove('pop'); void el.offsetWidth; el.classList.add('pop');
+      }).observe(el, { childList: true, characterData: true, subtree: true });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', watch); else watch();
+})();
