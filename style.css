@@ -115,3 +115,4 @@ details[open]{border-color:var(--pri)}
   .btns .btn.ghost{flex:1 1 auto}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.probs{margin:10px 0 4px;font-size:14px}.probs ul{list-style:none;margin:6px 0 0;padding:0}.probs li{display:grid;grid-template-columns:minmax(0,1fr) 40% 60px;align-items:center;gap:8px;padding:3px 0}.probs li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.probs li i{display:block;height:8px;border-radius:4px;background:var(--pri);opacity:.75}.probs li em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums;color:var(--sub)}.probs small{color:var(--sub)}
