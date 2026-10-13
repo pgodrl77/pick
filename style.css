@@ -8,7 +8,7 @@ a{color:var(--pri)}
 header.top{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
 header.top .wrap{display:flex;align-items:center;gap:14px;height:56px}
 .logo{font-weight:800;font-size:19px;color:var(--ink);text-decoration:none;white-space:nowrap}
-.logo span{color:var(--pri)}
+.logo span{color:inherit}
 nav.tools{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
 nav.tools::-webkit-scrollbar{display:none}
 nav.tools a{white-space:nowrap;text-decoration:none;color:var(--sub);font-size:14px;padding:6px 10px;border-radius:8px}
